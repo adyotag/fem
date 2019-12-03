@@ -1,0 +1,33 @@
+<< --- 2D STRESS ANALYSIS USING QUAD --- >>
+PROBLEM 7.4
+<< NN NE NM NDIM NEN NDN >>
+9 4 1 2 4 2
+<< ND NL NMPC >>
+6 1 0
+<< Node# Coordinates >>
+1 0 0
+2 0 15
+3 0 30
+4 30 0
+5 30 15
+6 30 30
+7 60 0
+8 60 15
+9 60 30
+<< Elem# Nodes Mat# Thickness TempRise >>
+1 1 4 5 2 1 10 0
+2 2 5 6 3 1 10 0
+3 4 7 8 5 1 10 0
+4 5 8 9 6 1 10 0
+<< DOF# Displacement >>
+1 0
+2 0
+3 0
+4 0
+5 0
+6 0
+<< DOF# Load >>
+18 -10000
+<< MAT# E Nu Alpha >>
+1 70000 .33 12E-6
+B1 i B2 j B3 (Multi-point constr. B1*Qi+B2*Qj=B3)
