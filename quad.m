@@ -768,8 +768,6 @@ function [] = GetAvgStress();
 
         % Find all r.
         rs = sum( (integration_coordinates).^2,2).';
-        size(rs)
-        size(STRL(ne,:,1))
         
         % Compute stresses within each element using given expression
         % sigma_xx
