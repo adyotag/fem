@@ -61,7 +61,7 @@ end
 
 
 disp(blanks(1));
-FILE1 = "input.txt"; %input('Input Data File Name ','s');
+FILE1 = "input_part_2.txt"; %input('Input Data File Name ','s');
 LINP  = fopen(FILE1,'r');
 FILE2 = "output.txt"; %input('Output Data File Name ','s');
 LOUT  = fopen(FILE2,'w');
@@ -189,7 +189,7 @@ global GP NIP DJL
 %----- Global Stiffness Matrix
 S = zeros(NQ,NBW);
 %----- Determinants at each integration point at each element
-DJL = zeros(NE,NIP)
+DJL = zeros(NE,NIP);
 %----- Corner Nodes and Integration Points
 C = .57735026919;
 % CODE ADDED (1a)
@@ -234,7 +234,7 @@ for N = 1:NE
         ETA = XNI(IP, 2);
         [DJ, D, B, DB] = dbmat(N, LC, MAT, PM, NOC, X ,XI,ETA);
         THICK = TH(N);
-        DJL(N, IP) = DJ
+        DJL(N, IP) = DJ;
         
 %  --- Element Stiffness Matrix  SE
        for I = 1:8
@@ -357,7 +357,7 @@ global LC IPL
 global XNI
 % CODE ADDED
 global GP NIP STRL
-STRL = zeros(NE,NIP,3)
+STRL = zeros(NE,NIP,3);
 % CODE ADDED
 
 %-----  Stress Calculations -----
@@ -615,7 +615,7 @@ function [] = GetJNode();
         fprintf('Node: %d', nn);
         % Find all the elements that contain current node
         element_mask = any(NOC==nn,2);
-        all_elems = 1:4;
+        all_elems = 1:NN;
         contained_elems = all_elems(element_mask);
         % Find coordinate of node, and integration points for all elements
         % containing the current node
@@ -672,7 +672,7 @@ function [] = GetFNode();
     for nn = 1:NN
         % Find all the elements that contain current node
         element_mask = any(NOC==nn,2);
-        all_elems = 1:4;
+        all_elems = 1:NN;
         contained_elems = all_elems(element_mask);
         % Find coordinate of node, and integration points for all elements
         % containing the current node
@@ -789,10 +789,10 @@ function [] = GetAvgStress();
     t_left = zeros(NE,2); t_right = zeros(NE,2);
     
     for ne=1:NE
-        t_top(ne,:) = [0. -1*SLE(ne,2)];
-        t_bottom(ne,:) = [0. SLE(ne,2)];
-        t_left(ne,:) = [SLE(ne, 1) 0.];
-        t_right(ne,:) = [-1*SLE(ne, 1) 0.];
+        t_top(ne,:) = [0. SLE(ne,2)];
+        t_bottom(ne,:) = [0. -1*SLE(ne,2)];
+        t_left(ne,:) = [-1*SLE(ne, 1) 0.];
+        t_right(ne,:) = [SLE(ne, 1) 0.];
     end
     
     disp("Element #, top_traction, bottom_traction, left_traction, right_traction");
